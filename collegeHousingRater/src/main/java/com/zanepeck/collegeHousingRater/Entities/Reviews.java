@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-
+//Reviews Entity representing the reviews table in the database
 @AllArgsConstructor
 @Entity
 @Getter

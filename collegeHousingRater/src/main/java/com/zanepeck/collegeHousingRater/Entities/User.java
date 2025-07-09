@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
+//Usder Entity representing the users table in the database
 @AllArgsConstructor
 @Entity
 @Getter

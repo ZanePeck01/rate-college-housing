@@ -3,14 +3,15 @@ package com.zanepeck.collegeHousingRater.Dtos;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-//College Data Transfer Object
+//Housing Data Transfer Object
 @AllArgsConstructor
 @Getter
-public class CollegeDto {
+public class HousingDto {
 
     private Long id;
+    private Long collegeId;
     private String name;
-    private String location;
-    private String website;
+    private String address;
+    private Integer rating;
 
 }

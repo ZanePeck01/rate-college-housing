@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
+//College Entity representing the college table in the database
 @AllArgsConstructor
 @Entity
 @Getter

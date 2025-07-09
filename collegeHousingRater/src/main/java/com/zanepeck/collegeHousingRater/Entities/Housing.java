@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
+//Housing Entity representing the housing table in the database
 @AllArgsConstructor
 @Entity
 @Getter
@@ -25,7 +25,7 @@ public class Housing {
     private Long id;
 
     @Column(name = "college_id", nullable = false)
-    private String college_id;
+    private Long college_id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -33,7 +33,7 @@ public class Housing {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "description")
-    private String rating;
+    @Column(name = "rating")
+    private Integer rating;
 
 }
