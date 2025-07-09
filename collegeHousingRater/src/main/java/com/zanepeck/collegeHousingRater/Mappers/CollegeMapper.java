@@ -10,3 +10,4 @@ public interface CollegeMapper {
     CollegeDto toDto(Colleges college);
     Colleges toEntity(CollegeDto collegeDto);
 }
+
