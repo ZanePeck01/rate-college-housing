@@ -26,17 +26,17 @@ public class Reviews {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private String user_id;
+    private Long userId;
 
     @Column(name = "housing_id", nullable = false)
-    private String housing_id;
+    private Long housingId;
 
     @Column(name = "rating", nullable = false)
-    private String rating;
+    private Integer rating;
 
     @Column(name = "review")
     private String review;
 
     @Column(name = "created_at", nullable = false)
-    private String created_at;
+    private String createdAt;
 }

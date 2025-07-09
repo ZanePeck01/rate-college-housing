@@ -36,7 +36,7 @@ public class HousingController {
     public List<HousingDto> getHousingByCollegeId(@RequestParam Long collegeId) {
         return housingRepository.findAll()
                 .stream()
-                .filter(housing -> housing.getCollege_id().equals(collegeId))
+                .filter(housing -> housing.getCollegeId().equals(collegeId))
                 .map(housingMapper::toDto)
                 .collect(Collectors.toList());
     }

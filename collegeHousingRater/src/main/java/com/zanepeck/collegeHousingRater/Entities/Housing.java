@@ -25,7 +25,7 @@ public class Housing {
     private Long id;
 
     @Column(name = "college_id", nullable = false)
-    private Long college_id;
+    private Long collegeId;
 
     @Column(name = "name", nullable = false)
     private String name;
