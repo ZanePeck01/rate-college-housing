@@ -9,7 +9,7 @@ import com.zanepeck.collegeHousingRater.Entities.Address;
 //Repository interface for Address entity
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
-    List<Address> findByHousingId(String name);
+    List<Address> findByHousingId(Long id);
 
     //To find addresses by housingId:
     // List<Address> findByHousingId(String housingId)

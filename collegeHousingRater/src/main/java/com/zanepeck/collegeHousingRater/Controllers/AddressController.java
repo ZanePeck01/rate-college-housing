@@ -23,10 +23,9 @@ public class AddressController {
     private final AddressMapper addressMapper;
 
     @GetMapping
-    public List<AddressDto> getAddressByHousingName(@PathVariable String name) {
-        return addressRepository.findAll()
+    public List<AddressDto> getAddressByHousingId(@PathVariable Long id) {
+        return addressRepository.findByHousingId(id)
                 .stream()
-                .filter(address -> address.getHousingId().equalsIgnoreCase(name))
                 .map(addressMapper::toDto)
                 .collect(Collectors.toList());
     }

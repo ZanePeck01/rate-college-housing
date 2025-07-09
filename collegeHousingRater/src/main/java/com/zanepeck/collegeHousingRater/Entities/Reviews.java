@@ -1,11 +1,15 @@
 package com.zanepeck.collegeHousingRater.Entities;
 
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,18 +29,20 @@ public class Reviews {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "housing_id", nullable = false)
-    private Long housingId;
+    @ManyToOne
+    @JoinColumn(name = "housing_id", nullable = false)
+    private Housing housing;
 
     @Column(name = "rating", nullable = false)
-    private Integer rating;
+    private float rating;
 
     @Column(name = "review")
     private String review;
 
     @Column(name = "created_at", nullable = false)
-    private String createdAt;
+    private LocalDateTime createdAt;
 }

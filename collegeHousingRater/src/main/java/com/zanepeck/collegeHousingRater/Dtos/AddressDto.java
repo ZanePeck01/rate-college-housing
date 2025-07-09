@@ -9,7 +9,6 @@ import lombok.Getter;
 public class AddressDto {
 
     private Long id;
-    private String housingId;
     private String street;
     private String city;
     private String state;

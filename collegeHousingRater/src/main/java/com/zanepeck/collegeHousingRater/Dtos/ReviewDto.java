@@ -1,5 +1,7 @@
 package com.zanepeck.collegeHousingRater.Dtos;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +14,8 @@ public class ReviewDto {
     private Long id;
     private Long userId;
     private Long housingId;
-    private Integer rating;
+    private float rating;
     private String review;
-    private String createdAt;
+    private LocalDateTime createdAt;
 
 }

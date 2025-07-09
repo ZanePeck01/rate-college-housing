@@ -1,10 +1,14 @@
 package com.zanepeck.collegeHousingRater.Entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Table(name = "users")
-@ToString(exclude = {"password", "username"}) // Exclude password and username from toString for security
+@ToString(exclude = {"password", "username"}) //Exclude password and username from toString for security
 public class User {
 
     @Id
@@ -42,5 +46,8 @@ public class User {
 
     @Column(name = "college", nullable = false)
     private String college;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reviews> reviews;
 
 }

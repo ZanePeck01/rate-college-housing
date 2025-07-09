@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS review (
   id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
   housing_id INT NOT NULL,
-  rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  rating FLOAT NOT NULL CHECK (rating >= 1 AND rating <= 5),
   review TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)

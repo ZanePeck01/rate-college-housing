@@ -34,9 +34,8 @@ public class HousingController {
     //for finding all housing for a specfic college
     @GetMapping("/{collegeId}")
     public List<HousingDto> getHousingByCollegeId(@RequestParam Long collegeId) {
-        return housingRepository.findAll()
+        return housingRepository.findByCollegeId(collegeId)
                 .stream()
-                .filter(housing -> housing.getCollegeId().equals(collegeId))
                 .map(housingMapper::toDto)
                 .collect(Collectors.toList());
     }

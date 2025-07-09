@@ -10,5 +10,6 @@ import com.zanepeck.collegeHousingRater.Entities.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByUsername(String username);
+    void deleteByUsername(String username);
 
 }
