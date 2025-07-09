@@ -30,7 +30,7 @@ public class Colleges {
     @Column(name = "location", nullable = false)
     private String location;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "website", nullable = false)
     private String website;
 
 }
