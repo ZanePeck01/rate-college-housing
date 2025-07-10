@@ -13,10 +13,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 //College Entity representing the college table in the database
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter

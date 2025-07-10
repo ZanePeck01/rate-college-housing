@@ -3,6 +3,7 @@ package com.zanepeck.collegeHousingRater.Controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +17,7 @@ import com.zanepeck.collegeHousingRater.Mappers.ReviewMapper;
 import com.zanepeck.collegeHousingRater.Repositories.ReviewRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @RestController
 @AllArgsConstructor
@@ -72,6 +74,12 @@ public class ReviewController {
         Reviews updatedReview = reviewRepository.save(review);
         // Convert back to DTO and return
         return reviewMapper.toDto(updatedReview);
+    }
+
+    @DeleteMapping("/{reviewId}")
+    public void deleteReview(@RequestParam Long reviewId) {
+        // Delete the review by its ID
+        reviewRepository.deleteById(reviewId);
     }
 
 }

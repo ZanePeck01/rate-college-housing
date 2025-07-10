@@ -4,7 +4,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import com.zanepeck.collegeHousingRater.Dtos.ReviewDto;
+import com.zanepeck.collegeHousingRater.Entities.Housing;
 import com.zanepeck.collegeHousingRater.Entities.Reviews;
+import com.zanepeck.collegeHousingRater.Entities.User;
 
 // Mapper interface for converting between ReviewDto and Review entity
 @Mapper(componentModel = "spring")
@@ -17,17 +19,17 @@ public interface ReviewMapper {
     @Mapping(target = "housing", expression = "java(mapHousingId(dto.getHousingId()))")
     Reviews toEntity(ReviewDto dto);
 
-    // default User mapUserId(Long id) {
-    //     if (id == null) return null;
-    //     User user = new User();
-    //     user.setId(id);
-    //     return user;
-    // }
+    default User mapUserId(Long id) {
+        if (id == null) return null;
+        User user = new User();
+        user.setId(id);
+        return user;
+    }
 
-    // default Housing mapHousingId(Long id) {
-    //     if (id == null) return null;
-    //     Housing housing = new Housing();
-    //     housing.setId(id);
-    //     return housing;
-    // }
+    default Housing mapHousingId(Long id) {
+        if (id == null) return null;
+        Housing housing = new Housing();
+        housing.setId(id);
+        return housing;
+    }
 }
