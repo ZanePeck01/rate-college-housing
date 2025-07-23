@@ -17,7 +17,6 @@ import com.zanepeck.collegeHousingRater.Mappers.ReviewMapper;
 import com.zanepeck.collegeHousingRater.Repositories.ReviewRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @RestController
 @AllArgsConstructor

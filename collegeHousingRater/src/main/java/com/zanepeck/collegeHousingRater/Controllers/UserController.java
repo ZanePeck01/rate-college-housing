@@ -18,7 +18,6 @@ import com.zanepeck.collegeHousingRater.Mappers.UserMapper;
 import com.zanepeck.collegeHousingRater.Repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 //Controller for managing users
 //Handles requests related to user operations such as creating, updating, deleting, and retrieving users

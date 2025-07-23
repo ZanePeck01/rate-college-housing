@@ -12,7 +12,6 @@ import com.zanepeck.collegeHousingRater.Mappers.CollegeMapper;
 import com.zanepeck.collegeHousingRater.Repositories.CollegeRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
