@@ -1,0 +1,17 @@
+/* NavBar styles */
+.navbar {
+  margin-bottom: 20px;
+}
+/*Logo/Title*/
+.navbar-brand {
+  font-weight: bold;
+  font-size: 2rem;
+margin-left: -125px; /* Push left 20px */
+}
+/*Sign-In Link*/
+.nav-link {
+  font-size: 1.5rem;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
