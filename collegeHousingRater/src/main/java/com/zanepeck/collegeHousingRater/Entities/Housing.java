@@ -1,6 +1,5 @@
 package com.zanepeck.collegeHousingRater.Entities;
 
-
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -35,7 +34,7 @@ public class Housing {
 
     @ManyToOne
     @JoinColumn(name = "college_id", nullable = false)
-    private Colleges college;
+    private College college;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -49,6 +48,5 @@ public class Housing {
 
     @OneToMany(mappedBy = "housing", cascade = CascadeType.ALL)
     private List<Reviews> reviews;
-
 
 }

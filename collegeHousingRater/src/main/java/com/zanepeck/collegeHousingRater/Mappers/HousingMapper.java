@@ -2,11 +2,10 @@ package com.zanepeck.collegeHousingRater.Mappers;
 
 import com.zanepeck.collegeHousingRater.Dtos.HousingDto;
 import com.zanepeck.collegeHousingRater.Entities.Address;
-import com.zanepeck.collegeHousingRater.Entities.Colleges;
+import com.zanepeck.collegeHousingRater.Entities.College;
 import com.zanepeck.collegeHousingRater.Entities.Housing;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
 
 //Mapper interface for converting between HousingDto and Housing entity
 @Mapper(componentModel = "spring")
@@ -20,18 +19,19 @@ public interface HousingMapper {
     Housing toEntity(HousingDto dto);
 
     // Manual mapping helpers
-    default Colleges mapCollegeId(Long id) {
-        if (id == null) return null;
-        Colleges college = new Colleges();
+    default College mapCollegeId(Long id) {
+        if (id == null)
+            return null;
+        College college = new College();
         college.setId(id);
         return college;
     }
 
     default Address mapAddressId(Long id) {
-        if (id == null) return null;
+        if (id == null)
+            return null;
         Address address = new Address();
         address.setId(id);
         return address;
     }
 }
-

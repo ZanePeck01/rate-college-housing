@@ -1,6 +1,5 @@
 package com.zanepeck.collegeHousingRater.Entities;
 
-
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "college")
-public class Colleges {
+public class College {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

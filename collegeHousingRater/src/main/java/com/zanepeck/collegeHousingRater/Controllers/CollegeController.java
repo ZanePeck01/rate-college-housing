@@ -3,6 +3,7 @@ package com.zanepeck.collegeHousingRater.Controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,15 +17,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //Handles HTTP requests related to colleges
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/colleges")
+@RequestMapping("/home")
 public class CollegeController {
 
     private final CollegeRepository collegeRepository;
     private final CollegeMapper collegeMapper;
 
-    //Getting all colleges 
+    // Getting all colleges
     @GetMapping
     public List<CollegeDto> getAllColleges() {
         return collegeRepository.findAll()
@@ -33,7 +35,7 @@ public class CollegeController {
                 .collect(Collectors.toList());
     }
 
-    //Getting specific 
+    // Getting specific
     @GetMapping("/{name}")
     public List<CollegeDto> getCollegesByName(@RequestParam String name) {
         return collegeRepository.findAll()

@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/housing/{name}/address")
+@RequestMapping("/housing/{id}/address")
 public class AddressController {
 
     private final AddressRepository addressRepository;
