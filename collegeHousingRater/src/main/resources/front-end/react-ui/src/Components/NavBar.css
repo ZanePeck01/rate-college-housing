@@ -1,0 +1,18 @@
+/* NavBar styles */
+.navbar {
+  min-height: 75px;
+}
+/*Logo/Title*/
+.navbar-brand {
+  font-weight: bold;
+  font-size: 2.5rem !important;
+  margin-left: -125px; /* Push left 20px */
+}
+/*Sign-In Link*/
+.navbar-link {
+  font-size: 1.5rem !important;
+  margin-right: -40px;
+}
+.navbar-link:hover {
+  text-decoration: underline;
+}

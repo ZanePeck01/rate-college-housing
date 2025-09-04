@@ -1,0 +1,53 @@
+.search-bar-wrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto; /* Center the search bar */
+  margin-top: 200px;
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 8px 16px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.search-bar {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 8px;
+}
+
+.search-icon {
+  font-size: 1.2rem;
+  color: gray;
+  margin-left: 10px;
+}
+
+.college-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.college-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.college-list li:hover {
+  background-color: #f0f0f0;
+}
