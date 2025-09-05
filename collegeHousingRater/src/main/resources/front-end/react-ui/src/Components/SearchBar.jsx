@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import './SearchBar.css'; //Import SearchBar styles
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for in-app navigation
+import './SearchBar.css'; // Import SearchBar styles
 
-//SearchBar component
+// SearchBar component
 function SearchBar({ onSearch }) {
-  //state varaibles to hold the search term, list of colleges, and filtered colleges
+  // State variables to hold the search term, list of colleges, filtered colleges, and dropdown visibility
   const [searchTerm, setSearchTerm] = useState('');
   const [colleges, setColleges] = useState([]);
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  //Fetch colleges from Spring Boot backend
+  const navigate = useNavigate(); // Hook to navigate programmatically without reloading
+
+  // Fetch colleges from Spring Boot backend
   useEffect(() => {
     fetch('http://localhost:8080/home')
       .then((response) => response.json())
       .then((data) => {
         setColleges(data);
-        setFilteredColleges(data); //start with full list
+        setFilteredColleges(data); // Start with full list
       })
       .catch((error) => console.error('Error fetching colleges:', error));
   }, []);
 
-  //handleChange function to update the search term
+  // handleChange function to update the search term and filter the college list
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    onSearch(event.target.value); //Pass the search term to a parent component or handler
+    onSearch(event.target.value); // Pass the search term to a parent component or handler
 
     const filtered = colleges.filter((college) =>
       college.name.toLowerCase().includes(event.target.value.toLowerCase())
@@ -31,36 +34,36 @@ function SearchBar({ onSearch }) {
     setFilteredColleges(filtered);
   };
 
-  //show dropdown when input is focused
+  // Show dropdown when input is focused
   const handleFocus = () => {
     setShowDropdown(true);
-    setFilteredColleges(colleges);
+    setFilteredColleges(colleges); // Show full list when focused
   };
 
-  //Hide dropdown when clicking outside
+  // Hide dropdown when clicking outside
   const handleBlur = () => {
-    //Delay hiding to allow click on list item
+    // Delay hiding to allow click on list item
     setTimeout(() => setShowDropdown(false), 100);
   };
 
-  //handleSearch function to redirect to a specific link based on the search term
+  // handleSearch function to navigate to a specific college page
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      // Redirect to a page for the selected college
-      window.location.href = `/home/${encodeURIComponent(searchTerm)}`;
+      // Use React Router navigation instead of full page reload
+      navigate(`/home/${encodeURIComponent(searchTerm)}`);
     }
   };
 
-  //trigger handleSearch when pressing the Enter key
+  // Trigger handleSearch when pressing the Enter key
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
-  //render the search bar with an input field and a search icon
-  //the input field will call handleChange on change
-  //pressing Enter or clicking the search icon will redirect
+  // Render the search bar with an input field and a search icon
+  // The input field calls handleChange on change
+  // Pressing Enter or clicking the search icon navigates to the selected college
   return (
     <div className="search-bar-wrapper">
       <input
@@ -71,24 +74,24 @@ function SearchBar({ onSearch }) {
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onKeyDown={handleKeyDown} //handles Enter press
+        onKeyDown={handleKeyDown} // Handles Enter key press
       />
       <i
         className="fas fa-search search-icon"
-        onClick={handleSearch} //handles search icon click
+        onClick={handleSearch} // Handles search icon click
         style={{ cursor: 'pointer' }}
       ></i>
 
-      {/* College list */}
+      {/* College list dropdown */}
       {showDropdown && filteredColleges.length > 0 && (
         <ul className="college-list">
           {filteredColleges.map((college) => (
             <li
               key={college.id}
-              //clicking a college name sets the term AND redirects
+              // Clicking a college name sets the search term AND navigates using React Router
               onClick={() => {
                 setSearchTerm(college.name);
-                window.location.href = `/home/${encodeURIComponent(college.name)}`;
+                navigate(`/home/${encodeURIComponent(college.name)}`); // Navigate without page reload
               }}
             >
               {college.name}

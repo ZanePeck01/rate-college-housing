@@ -83,6 +83,16 @@
 	
 
 	<build>
+	    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>false</filtering>
+            <excludes>
+                <!-- Exclude React node_modules folder -->
+                <exclude>front-end/react-ui/node_modules/**</exclude>
+            </excludes>
+        </resource>
+    </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
