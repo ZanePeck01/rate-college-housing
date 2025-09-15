@@ -48,9 +48,19 @@ function SearchBar({ onSearch }) {
 
   // handleSearch function to navigate to a specific college page
   const handleSearch = () => {
-    if (searchTerm.trim() !== '') {
-      // Use React Router navigation instead of full page reload
-      navigate(`/home/${encodeURIComponent(searchTerm)}`);
+      if (searchTerm.trim() !== '') {
+        // Map college names to their dedicated routes
+        const routeMap = {
+          "University of Louisville": "/home/UofL",
+          "University of Kentucky": "/home/UK",
+        };
+
+      const route = routeMap[searchTerm];
+      if (route) {
+        navigate(route); // navigate to the mapped route
+      } else {
+        console.log("No page for this college");
+      }
     }
   };
 
@@ -88,14 +98,26 @@ function SearchBar({ onSearch }) {
           {filteredColleges.map((college) => (
             <li
               key={college.id}
-              // Clicking a college name sets the search term AND navigates using React Router
               onClick={() => {
                 setSearchTerm(college.name);
-                navigate(`/home/${encodeURIComponent(college.name)}`); // Navigate without page reload
+
+                // Map college names to their dedicated routes
+                const routeMap = {
+                  "University of Louisville": "/home/UofL",
+                  "University of Kentucky": "/home/UK",
+                };
+
+                const route = routeMap[college.name];
+                if (route) {
+                  navigate(route);
+                } else {
+                  console.log("No page for this college");
+                }
               }}
             >
               {college.name}
             </li>
+
           ))}
         </ul>
       )}

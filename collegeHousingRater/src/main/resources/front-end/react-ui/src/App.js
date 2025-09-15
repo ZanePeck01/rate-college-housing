@@ -4,6 +4,7 @@ import './Components/SearchBar.css'; // Import SearchBar styles
 import NavBar from './Components/NavBar';
 import SearchBar from './Components/SearchBar';
 import UofL from './Colleges/UofL';
+import UK from './Colleges/UK';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Routes, Route } from "react-router-dom";
@@ -26,7 +27,8 @@ function App() {
             <Route path="/home"/>
             <Route path="/"/>
             {/* routes for colleges */}
-            <Route path="/home/:collegeName" element={<UofL />} />
+            <Route path="/home/UofL" element={<UofL />} />
+            <Route path="/home/UK" element={<UK />} />
           </Routes>
       </div>
   );
