@@ -1,0 +1,19 @@
+/*backgroun image*/
+.louisville-page {
+  min-height: 100vh;             /* full viewport height */
+  margin: 0;                     /* prevent accidental scroll from margins */
+  background-image: url(C:\Users\PC\OneDrive\Desktop\CollegeHousingRater\rate-college-housing\collegeHousingRater\src\main\resources\front-end\react-ui\src\Images\louisville_campus.jpg);
+  background-size: cover;        /* make it cover the screen */
+  background-position: center;
+  background-repeat: no-repeat;  /* no tiling */
+  background-attachment: fixed;  /* optional: keeps background fixed on scroll */
+  padding: 20px;
+  color: white;
+  overflow: hidden;              /* prevents scrollbars if background pushes */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* disable scrolling */
+}
