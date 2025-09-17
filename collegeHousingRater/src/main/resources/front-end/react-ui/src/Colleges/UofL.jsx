@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./UofL.css"; 
 
 function UofL() {
   const { collegeName } = useParams(); //get the name from the URL
@@ -18,7 +19,7 @@ function UofL() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="louisville-page">
       <h1>University of Louisville</h1>
     </div>
   );
