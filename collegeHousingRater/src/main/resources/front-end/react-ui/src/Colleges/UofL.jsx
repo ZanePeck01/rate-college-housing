@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./UofL.css"; 
+import InfoCard from "../Components/InfoCard";
 
 function UofL() {
   const { collegeName } = useParams(); //get the name from the URL
@@ -21,6 +22,11 @@ function UofL() {
   return (
     <div className="louisville-page">
       <h1>University of Louisville</h1>
+      <InfoCard
+        title="Learn More"
+        description="Click to see more details about this topic."
+        link="/details"
+      />
     </div>
   );
 }
