@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for in-app navigation
-import './SearchBar.css'; // Import SearchBar styles
+import { useNavigate } from 'react-router-dom';
+import './SearchBar.css';
 
-// SearchBar component
 function SearchBar({ onSearch }) {
-  // State variables to hold the search term, list of colleges, filtered colleges, and dropdown visibility
   const [searchTerm, setSearchTerm] = useState('');
   const [colleges, setColleges] = useState([]);
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const navigate = useNavigate(); // Hook to navigate programmatically without reloading
+  const navigate = useNavigate();
 
   // Fetch colleges from Spring Boot backend
   useEffect(() => {
@@ -18,15 +16,22 @@ function SearchBar({ onSearch }) {
       .then((response) => response.json())
       .then((data) => {
         setColleges(data);
-        setFilteredColleges(data); // Start with full list
+        setFilteredColleges(data);
       })
       .catch((error) => console.error('Error fetching colleges:', error));
   }, []);
 
-  // handleChange function to update the search term and filter the college list
+  // Helper function to convert college name to URL-friendly format
+  const collegeNameToUrl = (name) => {
+    return name
+      .toLowerCase()
+      .replace(/\s+/g, '-')           // Replace spaces with hyphens
+      .replace(/[^a-z0-9-]/g, '');    // Remove special characters
+  };
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    onSearch(event.target.value); // Pass the search term to a parent component or handler
+    onSearch(event.target.value);
 
     const filtered = colleges.filter((college) =>
       college.name.toLowerCase().includes(event.target.value.toLowerCase())
@@ -34,46 +39,45 @@ function SearchBar({ onSearch }) {
     setFilteredColleges(filtered);
   };
 
-  // Show dropdown when input is focused
   const handleFocus = () => {
     setShowDropdown(true);
-    setFilteredColleges(colleges); // Show full list when focused
+    setFilteredColleges(colleges);
   };
 
-  // Hide dropdown when clicking outside
   const handleBlur = () => {
-    // Delay hiding to allow click on list item
     setTimeout(() => setShowDropdown(false), 100);
   };
 
-  // handleSearch function to navigate to a specific college page
   const handleSearch = () => {
-      if (searchTerm.trim() !== '') {
-        // Map college names to their dedicated routes
-        const routeMap = {
-          "University of Louisville": "/home/UofL",
-          "University of Kentucky": "/home/UK",
-        };
+    if (searchTerm.trim() !== '') {
+      // Find matching college
+      const matchedCollege = colleges.find(
+        (college) => college.name.toLowerCase() === searchTerm.toLowerCase()
+      );
 
-      const route = routeMap[searchTerm];
-      if (route) {
-        navigate(route); // navigate to the mapped route
+      if (matchedCollege) {
+        const urlName = collegeNameToUrl(matchedCollege.name);
+        navigate(`/home/${urlName}`);
       } else {
         console.log("No page for this college");
+        alert("College not found. Please select from the dropdown.");
       }
     }
   };
 
-  // Trigger handleSearch when pressing the Enter key
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
-  // Render the search bar with an input field and a search icon
-  // The input field calls handleChange on change
-  // Pressing Enter or clicking the search icon navigates to the selected college
+  const handleCollegeClick = (college) => {
+    setSearchTerm(college.name);
+    const urlName = collegeNameToUrl(college.name);
+    navigate(`/home/${urlName}`);
+    setShowDropdown(false);
+  };
+
   return (
     <div className="search-bar-wrapper">
       <input
@@ -84,11 +88,11 @@ function SearchBar({ onSearch }) {
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onKeyDown={handleKeyDown} // Handles Enter key press
+        onKeyDown={handleKeyDown}
       />
       <i
         className="fas fa-search search-icon"
-        onClick={handleSearch} // Handles search icon click
+        onClick={handleSearch}
         style={{ cursor: 'pointer' }}
       ></i>
 
@@ -98,26 +102,10 @@ function SearchBar({ onSearch }) {
           {filteredColleges.map((college) => (
             <li
               key={college.id}
-              onClick={() => {
-                setSearchTerm(college.name);
-
-                // Map college names to their dedicated routes
-                const routeMap = {
-                  "University of Louisville": "/home/UofL",
-                  "University of Kentucky": "/home/UK",
-                };
-
-                const route = routeMap[college.name];
-                if (route) {
-                  navigate(route);
-                } else {
-                  console.log("No page for this college");
-                }
-              }}
+              onClick={() => handleCollegeClick(college)}
             >
               {college.name}
             </li>
-
           ))}
         </ul>
       )}
