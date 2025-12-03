@@ -44,7 +44,7 @@ public class Housing {
     private Address address;
 
     @Column(name = "rating")
-    private float rating;
+    private Float rating;
 
     @OneToMany(mappedBy = "housing", cascade = CascadeType.ALL)
     private List<Reviews> reviews;
