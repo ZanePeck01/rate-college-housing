@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CollegeHousingRaterApplication<collegeHousingRater>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.zanepeck.collegeHousingRater.CollegeHousingRaterApplication",
+            "projectName": "collegeHousingRater",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
