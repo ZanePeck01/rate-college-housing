@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./UofL.css"; 
-import InfoCard from "../Components/InfoCard";
+import DormCard from "../Components/InfoCard";
 
 function UofL() {
   const { collegeName } = useParams();
@@ -9,36 +9,74 @@ function UofL() {
   const [college, setCollege] = useState(null);
   const [dorms, setDorms] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // ADD THIS LINE
   const [selectedFilter, setSelectedFilter] = useState('all');
 
+  // Format college name from URL
+  const formatCollegeName = (name) => {
+    if (!name) return "University";
+    return decodeURIComponent(name)
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   useEffect(() => {
+    console.log("collegeName from URL:", collegeName);
+    
+    if (!collegeName) {
+      setError("No college name provided in URL");
+      setLoading(false);
+      return;
+    }
+
     // Fetch college details
-    fetch(`http://localhost:8080/home/${decodeURIComponent(collegeName)}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:8080/home/${encodeURIComponent(collegeName)}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log("College data received:", data); // Debug line
+        console.log("College data received:", data);
         setCollege(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching college:", err);
+        setError(err.message);
         setLoading(false);
       });
 
-    // Fetch dorms for this college
-    fetch(`http://localhost:8080/api/colleges/${decodeURIComponent(collegeName)}/dorms`)
-      .then((res) => res.json())
-      .then((data) => setDorms(data))
-      .catch((err) => console.error("Error fetching dorms:", err));
+    // Fetch housing for this college
+    fetch(`http://localhost:8080/home/${encodeURIComponent(collegeName)}/housing`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Housing data received:", data);
+        setDorms(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error("Error fetching housing:", err);
+        setDorms([]);
+      });
   }, [collegeName]);
 
   const handleDormClick = (dormId) => {
-    navigate(`/dorm/${dormId}`);
+    navigate(`/housing/${dormId}`);
   };
 
   const filteredDorms = selectedFilter === 'all' 
     ? dorms 
-    : dorms.filter(d => d.overallRating >= parseFloat(selectedFilter));
+    : dorms.filter(d => d.rating >= parseFloat(selectedFilter));
+
+  // Get display name with fallback
+  const displayName = college?.name || formatCollegeName(collegeName);
 
   if (loading) {
     return (
@@ -48,10 +86,12 @@ function UofL() {
     );
   }
 
-  if (!college) {
+  if (error) {
     return (
       <div className="error-container">
-        <h2>College not found</h2>
+        <h2>Error loading college</h2>
+        <p>{error}</p>
+        <button onClick={() => navigate('/')}>Go Back Home</button>
       </div>
     );
   }
@@ -61,9 +101,9 @@ function UofL() {
       {/* Hero Section */}
       <div className="hero-section">
         <div className="hero-content">
-          <h1>{college.name}</h1>
+          <h1>{displayName}</h1>
           <p className="hero-description">
-            Explore student-reviewed housing options at the {college.name}
+            Explore student-reviewed housing options at {displayName}
           </p>
           
           <div className="hero-stats">
@@ -72,7 +112,7 @@ function UofL() {
             </div>
             <div className="stat-item">
               <span className="stat-value">
-                {college.averageRating?.toFixed(1) || 'N/A'}
+                {college?.averageRating?.toFixed(1) || 'N/A'}
               </span> Average Rating
             </div>
           </div>
@@ -84,7 +124,7 @@ function UofL() {
         <div className="filters-container">
           <span className="filter-label">Filter by rating:</span>
           <div className="filter-buttons">
-            {['all', '3.0', '4.0', '4.5'].map((filter) => (
+            {['all', '3.5', '4.0', '4.5'].map((filter) => (
               <button
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
@@ -97,17 +137,23 @@ function UofL() {
         </div>
       </div>
 
-      {/* Dorms Grid */}
+      {/* Housing Grid */}
       <div className="dorms-section">
-        <div className="dorms-grid">
-          {filteredDorms.map((dorm) => (
-            <InfoCard key={dorm.id} dorm={dorm} onClick={handleDormClick} />
-          ))}
-        </div>
-
-        {filteredDorms.length === 0 && (
+        {dorms.length > 0 ? (
+          <div className="dorms-grid">
+            {filteredDorms.map((dorm) => (
+              <DormCard key={dorm.id} dorm={dorm} onClick={handleDormClick} />
+            ))}
+          </div>
+        ) : (
           <div className="no-results">
-            <p>No dorms match your filters</p>
+            <p>No housing options available yet</p>
+          </div>
+        )}
+
+        {filteredDorms.length === 0 && dorms.length > 0 && (
+          <div className="no-results">
+            <p>No housing matches your filters</p>
           </div>
         )}
       </div>
