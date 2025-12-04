@@ -1,5 +1,6 @@
 import React from "react";
 import "./InfoCard.css";
+import { housingImages, defaultHousingImage } from "../Images/housingImages.js";
 
 // Custom SVG Icon Components
 const Star = ({ filled, size = 16 }) => (
@@ -32,8 +33,15 @@ const DollarSign = ({ size = 16 }) => (
 );
 
 function InfoCard({ dorm, onClick }) {
+  // Get image from mapping or use default
+  const getHousingImage = () => {
+    if (dorm.imageUrl) {
+      return dorm.imageUrl; // Use database image if available
+    }
+    return housingImages[dorm.name] || defaultHousingImage;
+  };
+
   const renderStars = (rating) => {
-    // If no rating or rating is 0, show "No Ratings"
     if (rating == null || rating === 0) {
       return (
         <div className="stars-container no-rating">
@@ -42,7 +50,6 @@ function InfoCard({ dorm, onClick }) {
       );
     }
     
-    // Otherwise show stars and rating number
     return (
       <div className="stars-container">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -62,7 +69,7 @@ function InfoCard({ dorm, onClick }) {
       {/* Image Section */}
       <div className="dorm-image-container">
         <img
-          src={dorm.imageUrl || "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800"}
+          src={getHousingImage()}
           alt={dorm.name}
           className="dorm-image"
         />
@@ -71,7 +78,7 @@ function InfoCard({ dorm, onClick }) {
         </div>
       </div>
 
-      {/* Content Section */}
+      {/* Rest of the component stays the same */}
       <div className="dorm-content">
         <h3 className="dorm-name">{dorm.name}</h3>
         
@@ -79,7 +86,6 @@ function InfoCard({ dorm, onClick }) {
           {renderStars(dorm.rating)}
         </div>
 
-        {/* Additional Info */}
         <div className="dorm-info">
           {dorm.location && (
             <div className="info-item">
@@ -103,7 +109,6 @@ function InfoCard({ dorm, onClick }) {
           )}
         </div>
 
-        {/* Amenities Tags */}
         {dorm.amenities && dorm.amenities.length > 0 && (
           <div className="amenities-container">
             {dorm.amenities.slice(0, 3).map((amenity, index) => (
