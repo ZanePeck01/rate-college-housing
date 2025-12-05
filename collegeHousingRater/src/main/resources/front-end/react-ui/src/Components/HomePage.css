@@ -1,0 +1,288 @@
+/* HomePage.css */
+/* Main styles for the landing page*/
+
+.homepage {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Hero Section (main banner and stuff) */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple gradient background */
+  padding: 120px 24px 80px; /* Large top padding to account for navbar */
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 900px; /* Constrain width for readability */
+  margin: 0 auto; /* Center the content */
+}
+
+/* Main hero title styling */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  line-height: 1.2; /* Tighter line height for large text */
+}
+
+/* Accent text in hero title (different color) */
+.hero-title-accent {
+  display: block; /* Force to new line */
+  color: #ffd700; /* Gold color for emphasis */
+}
+
+/* Hero subtitle/description text */
+.hero-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.8; /* Looser line height for readability */
+  margin-bottom: 48px;
+  opacity: 0.95; /* Slightly transparent for softer look */
+}
+
+/* Search Bar */
+.hero-search {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Space between icon and input */
+  background: white;
+  padding: 16px 24px;
+  border-radius: 50px; /* Fully rounded edges */
+  max-width: 600px;
+  margin: 0 auto 24px; /* Center and add bottom margin */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+/* Enhanced shadow when search is focused */
+.hero-search.focused {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25); /* Larger shadow on focus */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Search icon styling */
+.hero-search svg {
+  color: #667eea; /* Match brand color */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Search input field */
+.hero-search-input {
+  flex: 1; /* Take up remaining space */
+  border: none;
+  outline: none; /* Remove default focus outline */
+  font-size: 1.1rem;
+  color: #333;
+  background: transparent;
+}
+
+/* Placeholder text styling */
+.hero-search-input::placeholder {
+  color: #999;
+}
+
+/* Tags for search bar when searching*/
+.hero-tags {
+  display: flex;
+  gap: 12px; /* Space between tags */
+  justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* Individual tag styling */
+.tag {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  border-radius: 20px; /* Rounded pill shape */
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Tag hover effect */
+.tag:hover {
+  background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+  transform: translateY(-2px); /* Lift effect */
+}
+
+/* Stats sections (the metrics) */
+.stats-section {
+  padding: 60px 24px;
+  background: white;
+}
+
+/* Grid layout for stat cards */
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 32px;
+}
+
+/* Individual stat card */
+.stat-card {
+  text-align: center;
+}
+
+/* Large number display in stat card */
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #667eea; /* Brand color */
+  margin-bottom: 8px;
+}
+
+/* Label below stat number */
+.stat-label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Features section*/
+.features-section {
+  padding: 80px 24px;
+  background: #f9fafb; /* Light gray background */
+}
+
+/* Section header (title + subtitle) */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin: 0 auto 60px; /* Center and add bottom margin */
+}
+
+/* Section title styling */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1a202c; /* Dark gray/black */
+  margin-bottom: 16px;
+}
+
+/* Section subtitle styling */
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Grid layout for feature cards */
+.features-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+  gap: 32px;
+}
+
+/* Individual feature card */
+.feature-card {
+  background: white;
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Feature card hover effect */
+.feature-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Larger shadow */
+  transform: translateY(-4px); /* Lift effect */
+}
+
+/* Icon container in feature card */
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Brand gradient */
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 24px;
+}
+
+/* Feature card title */
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+/* Feature card description */
+.feature-description {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* Table breakout*/
+@media (max-width: 768px) {
+  /* Reduce hero title size on tablets */
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  /* Reduce hero subtitle size */
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Reduce section title size */
+  .section-title {
+    font-size: 2rem;
+  }
+
+  /* Reduce stat number size */
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  /* Switch to single column layout */
+  .colleges-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Breakout */
+@media (max-width: 480px) {
+  /* Reduce hero padding on mobile */
+  .hero {
+    padding: 80px 16px 60px;
+  }
+
+  /* Further reduce hero title */
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  /* Reduce search bar padding */
+  .hero-search {
+    padding: 12px 16px;
+  }
+
+  /* Reduce search input font size */
+  .hero-search-input {
+    font-size: 1rem;
+  }
+
+  /* Make stats grid 2 columns on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* Reduce feature card padding */
+  .feature-card {
+    padding: 32px 24px;
+  }
+
+}
