@@ -1,0 +1,710 @@
+/*
+ * Styles for the housing detail page.
+ */
+
+/* Page Container */
+.housing-detail-page {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Image and Overlay Text */
+.hero-section {
+  position: relative;
+  height: 350px; 
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero image as background */
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Dark overlay for text readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.6)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 24px;
+}
+
+/* Center the content */
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+/* Back button positioned in top-left */
+.back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Centered hero title */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+/* Centered hero subtitle */
+.hero-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.95;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content Area (left and right column) */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+}
+
+/* Left Column */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Overview card */
+.overview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #1a202c;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Individual info item with icon */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.info-item svg {
+  color: #667eea;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.info-address {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Amentities Sectrion */
+.amenities-section {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.amenities-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1a202c;
+}
+
+.amenities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.amenity-tag {
+  padding: 8px 16px;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Reviews Card */
+.reviews-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Reviews header with button */
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.write-review-btn {
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.write-review-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: white;
+  color: #666;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Individiual Review Cards */
+.review-card {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Review header with author and rating */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.review-author-info {
+  flex: 1;
+}
+
+.review-author-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.review-author {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+/* Verified badge */
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #059669;
+  background: #d1fae5;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.verified-badge svg {
+  flex-shrink: 0;
+}
+
+.review-meta {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.review-rating-info {
+  text-align: right;
+}
+
+.stars-display {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.stars-display svg {
+  color: #fbbf24;
+}
+
+.review-date {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Review title */
+.review-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a202c;
+}
+
+/* Review content text */
+.review-content {
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* Pros and Cons List */
+
+/* Pros section */
+.review-pros {
+  margin-bottom: 12px;
+}
+
+.pros-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 8px;
+}
+
+.pros-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pro-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.pro-icon {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* Cons section */
+.review-cons {
+  margin-bottom: 16px;
+}
+
+.cons-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin-bottom: 8px;
+}
+
+.cons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.con-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.con-icon {
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+/* Helpful Button */
+.helpful-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.helpful-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.helpful-btn.active {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.helpful-btn svg {
+  flex-shrink: 0;
+}
+
+/* No Reviews State */
+.no-reviews {
+  text-align: center;
+  padding: 60px 24px;
+  color: #666;
+}
+
+.no-reviews p {
+  font-size: 1.125rem;
+}
+
+/* Right Column (Raing summary */
+.right-column {
+  height: fit-content;
+}
+
+.ratings-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 24px; /* Stick 24px from top when scrolling */
+}
+
+/* Overall Rating Display */
+.overall-rating {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.overall-rating-number {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.overall-rating-stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.overall-rating-stars svg {
+  color: #fbbf24;
+}
+
+.overall-rating-count {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Rating Breakdown */
+.rating-breakdown {
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.breakdown-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a202c;
+}
+
+/* Individual rating bar */
+.rating-bar-container {
+  margin-bottom: 16px;
+}
+
+.rating-bar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rating-bar-label {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.rating-bar-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* Rating bar track (background) */
+.rating-bar-track {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Rating bar fill (colored portion) */
+.rating-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 24px;
+}
+
+.error-container button {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error-container button:hover {
+  background: #1d4ed8;
+}
+
+/* Table Breakdown */
+@media (max-width: 1024px) {
+  /* Stack columns on tablets */
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make ratings card non-sticky on tablets */
+  .ratings-card {
+    position: relative;
+    top: 0;
+  }
+
+  /* Adjust info grid */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Breakdown */
+@media (max-width: 768px) {
+  /* Reduce hero height */
+  .hero-section {
+    height: 300px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Reduce padding */
+  .main-content {
+    padding: 24px 16px;
+  }
+
+  .overview-card,
+  .reviews-card,
+  .ratings-card {
+    padding: 24px 20px;
+  }
+
+  /* Stack review header on mobile */
+  .review-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .review-rating-info {
+    text-align: left;
+  }
+
+  /* Stack filter buttons */
+  .filter-buttons {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 120px;
+  }
+
+  /* Adjust overall rating */
+  .overall-rating-number {
+    font-size: 3rem;
+  }
+
+  /* Single column for reviews header */
+  .reviews-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .write-review-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce hero */
+  .hero-section {
+    height: 250px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  /* Reduce section titles */
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  /* Stack info items */
+  .info-grid {
+    gap: 16px;
+  }
+
+  /* Smaller amenity tags */
+  .amenity-tag {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  /* Reduce review card padding */
+  .review-card {
+    padding: 20px 16px;
+  }
+
+  .review-title {
+    font-size: 1rem;
+  }
+}
