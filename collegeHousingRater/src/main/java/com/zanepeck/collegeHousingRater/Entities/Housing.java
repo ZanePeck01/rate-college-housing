@@ -32,21 +32,31 @@ public class Housing {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "college_id", nullable = false)
-    private College college;
-
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    private String location;
 
     @Column(name = "rating")
     private Float rating;
 
-    @OneToMany(mappedBy = "housing", cascade = CascadeType.ALL)
-    private List<Reviews> reviews;
+    private Integer capacity;
+
+    @Column(name = "price_range")
+    private String priceRange;
+
+    @Column(name = "review_count")
+    private Integer reviewCount;
+
+    // @OneToMany(mappedBy = "housing", cascade = CascadeType.ALL)
+    // private List<Reviews> reviews;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id", insertable = false, updatable = false)
+    private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "college_id", nullable = false)
+    private College college;
 
 }
