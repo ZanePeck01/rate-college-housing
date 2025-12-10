@@ -1,10 +1,12 @@
 package com.zanepeck.collegeHousingRater.Dtos;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 //Data Transfer Object for Address
-@AllArgsConstructor
+@Data
+@NoArgsConstructor
 @Getter
 public class AddressDto {
 
@@ -13,5 +15,5 @@ public class AddressDto {
     private String city;
     private String state;
     private String zipCode;
-    
+
 }
