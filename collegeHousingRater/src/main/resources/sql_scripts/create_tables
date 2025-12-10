@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  college VARCHAR(255) NOT NULL);
+  college VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS college (
     id SERIAL PRIMARY KEY,
@@ -14,15 +15,27 @@ CREATE TABLE IF NOT EXISTS college (
     website VARCHAR(255)
 );
 
+CREATE TABLE IF NOT EXISTS address (
+  id SERIAL PRIMARY KEY,
+  street VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  state VARCHAR(255) NOT NULL,
+  zip_code VARCHAR(20) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS housing (
   id SERIAL PRIMARY KEY,
   college_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  address_id INT NOT NULL,
+  address_id INT,
   rating FLOAT DEFAULT 0.0,
+  capacity INT,
+  price_range VARCHAR(100),
+  location VARCHAR(255),
+  review_count INT DEFAULT 0,
   FOREIGN KEY (college_id) REFERENCES college(id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON UPDATE CASCADE,
   FOREIGN KEY (address_id) REFERENCES address(id)
     ON DELETE SET NULL
     ON UPDATE CASCADE
@@ -41,12 +54,4 @@ CREATE TABLE IF NOT EXISTS review (
   FOREIGN KEY (housing_id) REFERENCES housing(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS address (
-  id SERIAL PRIMARY KEY,
-  street VARCHAR(255) NOT NULL,
-  city VARCHAR(255) NOT NULL,
-  state VARCHAR(255) NOT NULL,
-  zip_code VARCHAR(20) NOT NULL,
 );
