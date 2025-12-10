@@ -272,14 +272,14 @@ function HousingDetail() {
                   </div>
                 </div>
                 
-                {/* Address */}
+                {/* Full Address */}
                 <div className="info-item">
                   <MapPin size={24} />
                   <div>
                     <div className="info-label">Address</div>
                     <div className="info-value info-address">
-                      {housing.street && housing.city ? 
-                        `${housing.street}, ${housing.city}, ${housing.state} ${housing.zipCode}` :
+                      {housing.address ? 
+                        `${housing.address.street}, ${housing.address.city}, ${housing.address.state} ${housing.address.zipCode}` :
                         'Address not available'
                       }
                     </div>
