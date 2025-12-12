@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './HousingDetail.css';
+import WriteReviewModal from './WriteReviewModal';
 
 
 // SSVG Icon Components
@@ -98,9 +99,9 @@ function HousingDetail() {
   
   // Selected star filter for reviews
   const [selectedFilter, setSelectedFilter] = useState('all');
-  
-  // Track which reviews user marked as helpful
-  const [helpfulReviews, setHelpfulReviews] = useState({});
+
+  // Review Modal state
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
 // Data Fetching, fetching housing and associated reviews
   
@@ -166,17 +167,6 @@ function HousingDetail() {
   };
 
 // Event Handlers
-  
-//Toggle helpful state for a review
-  const handleHelpful = (reviewId) => {
-    setHelpfulReviews(prev => ({
-      ...prev,
-      [reviewId]: !prev[reviewId]
-    }));
-    
-    // TODO: Send to backend to track helpful votes
-    // fetch(`http://localhost:8080/api/reviews/${reviewId}/helpful`, { method: 'POST' })
-  };
 
 // Handle back button click
   const handleBackClick = () => {
@@ -307,7 +297,8 @@ function HousingDetail() {
               {/* Header with Write Review button */}
               <div className="reviews-header">
                 <h2 className="section-title">Student Reviews</h2>
-                <button className="write-review-btn">
+                <button className="write-review-btn"
+                  onClick={() => setIsReviewModalOpen(true)}>
                   Write a Review
                 </button>
               </div>
@@ -386,15 +377,26 @@ function HousingDetail() {
                           </ul>
                         </div>
                       )}
-
-                      {/* Helpful Button */}
-                      <button
-                        onClick={() => handleHelpful(review.id)}
-                        className={`helpful-btn ${helpfulReviews[review.id] ? 'active' : ''}`}
-                      >
-                        <ThumbsUp size={16} />
-                        Helpful ({review.helpful + (helpfulReviews[review.id] ? 1 : 0)})
-                      </button>
+                      {/* Recommendation */}
+                      {review.wouldRecommend !== null && (
+                        <div className="review-recommendation">
+                          {review.wouldRecommend ? (
+                            <div className="recommendation-card recommend-yes">
+                              <span className="recommendation-icon">👍</span>
+                              <span className="recommendation-text">
+                                <strong>Would recommend</strong> this housing
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="recommendation-card recommend-no">
+                              <span className="recommendation-icon">👎</span>
+                              <span className="recommendation-text">
+                                <strong>Would not recommend</strong> this housing
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))
                 ) : (
@@ -438,6 +440,13 @@ function HousingDetail() {
           </div>
         </div>
       </div>
+      {/* Write Review Modal */}
+      <WriteReviewModal
+        isOpen={isReviewModalOpen}
+        onClose={() => setIsReviewModalOpen(false)}
+        housingName={housing?.name || 'Housing'}
+        housingId={housingId}
+      />
     </div>
   );
 }

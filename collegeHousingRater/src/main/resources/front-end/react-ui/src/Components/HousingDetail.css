@@ -428,34 +428,44 @@
   flex-shrink: 0;
 }
 
-/* Helpful Button */
-.helpful-btn {
-  display: inline-flex;
+/* Recommendation Section */
+
+.review-recommendation {
+  margin: 16px 0;
+}
+
+.recommendation-card {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid #e5e7eb;
+  gap: 12px;
+  padding: 12px 16px;
   border-radius: 8px;
-  cursor: pointer;
+  border: 2px solid;
+}
+
+.recommendation-card.recommend-yes {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.recommendation-card.recommend-no {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.recommendation-icon {
+  font-size: 1.5rem;
+}
+
+.recommendation-text {
   font-size: 0.875rem;
-  color: #666;
-  transition: all 0.3s ease;
+  line-height: 1.4;
 }
 
-.helpful-btn:hover {
-  border-color: #2563eb;
-  color: #2563eb;
-}
-
-.helpful-btn.active {
-  background: #dbeafe;
-  border-color: #2563eb;
-  color: #2563eb;
-}
-
-.helpful-btn svg {
-  flex-shrink: 0;
+.recommendation-text strong {
+  font-weight: 600;
 }
 
 /* No Reviews State */
