@@ -14,8 +14,30 @@ public class ReviewDto {
     private Long id;
     private Long userId;
     private Long housingId;
-    private float rating;
-    private String review;
+
+    private Float rating;
+
+    private Float cleanlinessRating;
+    private Float maintenanceRating;
+    private Float locationRating;
+    private Float valueRating;
+    private Float amenitiesRating;
+    private Float staffRating;
+
+    private String title;
+    private String content;
+
+    private String[] pros;
+    private String[] cons;
+
+    private String yearLived;
+    private Boolean wouldRecommend;
+    private Boolean verified;
+    private Integer helpfulCount;
+
+    private String author;
+
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }

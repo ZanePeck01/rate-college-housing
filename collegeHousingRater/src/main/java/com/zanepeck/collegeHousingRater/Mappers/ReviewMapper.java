@@ -13,6 +13,7 @@ import com.zanepeck.collegeHousingRater.Entities.User;
 public interface ReviewMapper {
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "housing.id", target = "housingId")
+    @Mapping(source = "wouldRecommend", target = "wouldRecommend")
     ReviewDto toDto(Reviews review);
 
     @Mapping(target = "user", expression = "java(mapUserId(dto.getUserId()))")
@@ -20,14 +21,16 @@ public interface ReviewMapper {
     Reviews toEntity(ReviewDto dto);
 
     default User mapUserId(Long id) {
-        if (id == null) return null;
+        if (id == null)
+            return null;
         User user = new User();
         user.setId(id);
         return user;
     }
 
     default Housing mapHousingId(Long id) {
-        if (id == null) return null;
+        if (id == null)
+            return null;
         Housing housing = new Housing();
         housing.setId(id);
         return housing;
