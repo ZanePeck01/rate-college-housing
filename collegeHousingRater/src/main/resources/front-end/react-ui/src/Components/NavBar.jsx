@@ -17,10 +17,10 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                 <Nav>
-                    {/* Sign-in link */}
+                    {/* Sign-in link
                     <Nav.Link className="navbar-link" eventKey={2} href="/sign-in">
                     Sign-In
-                    </Nav.Link>
+                    </Nav.Link> */}
                 </Nav>
                 </Navbar.Collapse>
             </Container>
