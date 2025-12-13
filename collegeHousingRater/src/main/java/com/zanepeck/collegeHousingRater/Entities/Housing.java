@@ -1,8 +1,5 @@
 package com.zanepeck.collegeHousingRater.Entities;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,8 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,10 +30,31 @@ public class Housing {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "college_id", insertable = false, updatable = false)
+    private Long collegeId;
+
     private String location;
 
     @Column(name = "rating")
     private Float rating;
+
+    @Column(name = "cleanliness_rating")
+    private Float cleanlinessRating;
+
+    @Column(name = "maintenance_rating")
+    private Float maintenanceRating;
+
+    @Column(name = "location_rating")
+    private Float locationRating;
+
+    @Column(name = "value_rating")
+    private Float valueRating;
+
+    @Column(name = "amenities_rating")
+    private Float amenitiesRating;
+
+    @Column(name = "staff_rating")
+    private Float staffRating;
 
     private Integer capacity;
 
@@ -58,5 +74,30 @@ public class Housing {
     @ManyToOne
     @JoinColumn(name = "college_id", nullable = false)
     private College college;
+
+    // Helper methods to get IDs
+    public Long getCollegeId() {
+        return college != null ? college.getId() : null;
+    }
+
+    public void setCollegeId(Long collegeId) {
+        if (collegeId != null) {
+            College c = new College();
+            c.setId(collegeId);
+            this.college = c;
+        }
+    }
+
+    public Long getAddressId() {
+        return address != null ? address.getId() : null;
+    }
+
+    public void setAddressId(Long addressId) {
+        if (addressId != null) {
+            Address a = new Address();
+            a.setId(addressId);
+            this.address = a;
+        }
+    }
 
 }

@@ -16,6 +16,12 @@ public class HousingDto {
     private Long collegeId;
     private String collegeName;
     private Float rating;
+    private Float cleanlinessRating;
+    private Float maintenanceRating;
+    private Float locationRating;
+    private Float valueRating;
+    private Float amenitiesRating;
+    private Float staffRating;
     private Integer capacity;
     private String priceRange;
     private String location;
