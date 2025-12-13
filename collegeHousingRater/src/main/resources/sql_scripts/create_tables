@@ -28,6 +28,12 @@ CREATE TABLE IF NOT EXISTS housing (
   college_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
   address_id INT,
+  cleanliness_rating FLOAT;
+  maintenance_rating FLOAT;
+  location_rating FLOAT;
+  value_rating FLOAT;
+  amenities_rating FLOAT;
+  staff_rating FLOAT;
   rating FLOAT DEFAULT 0.0,
   capacity INT,
   price_range VARCHAR(100),
