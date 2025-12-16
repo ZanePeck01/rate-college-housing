@@ -8,7 +8,7 @@ College housing horror stories are all too common: black mold, unresponsive main
 
 ## The Solution
 
-College Housing Rater provides a centralized platform where students can:
+HousingHub provides a centralized platform where students can:
 - **Read authentic reviews** from current and former residents
 - **Compare housing options** with detailed ratings and insights
 - **Make informed decisions** about where to live on campus
