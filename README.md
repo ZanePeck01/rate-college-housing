@@ -1,4 +1,4 @@
-# HusingHub (College Housing Rater)
+# HousingHub (College Housing Rater)
 
 > Empowering students to make informed housing decisions through transparent reviews and ratings of university-affiliated housing.
 
