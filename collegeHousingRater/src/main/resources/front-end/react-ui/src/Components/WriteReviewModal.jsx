@@ -339,7 +339,7 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
                 name="content"
                 value={formData.content}
                 onChange={handleInputChange}
-                placeholder="Share your experience living here... (minimum 50 characters)"
+                placeholder="Share your experience living here... (minimum 1 character)"
                 className="form-textarea"
                 rows={6}
               />
