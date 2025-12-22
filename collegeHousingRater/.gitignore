@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Database
+*.db
+postgres_data/
+
+# Docker
+.env
+docker-compose.override.yml
+
+# Logs
+*.log
