@@ -1,22 +1,72 @@
 services:
+  # PostgreSQL Database
   db:
-    container_name: collegehousingrater_db
     image: postgres:latest
-    environment:
-      POSTGRES_USER: zanepeck
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - db:/data/postgres
-    ports:
-      - "5332:5432"
-    networks:
-      - db
+    container_name: collegehousingrater_db
     restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: collegehousingrater_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d collegehousingrater_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-networks:
-  db:
-    driver: bridge
+# Spring Boot Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: college-housing-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # Database connection
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/collegehousingrater_db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password123
+      # JPA settings
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "false"
+      # CORS settings
+      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://localhost
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./src/main/resources/front-end/react-ui
+      dockerfile: Dockerfile
+    container_name: college-housing-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      REACT_APP_API_URL: http://localhost:8080
 
 volumes:
-  db:
+  postgres_data:
+    driver: local
+
+networks:
+  default:
+    name: college-housing-network
