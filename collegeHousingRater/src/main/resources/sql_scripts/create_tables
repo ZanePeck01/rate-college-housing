@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS housing (
   college_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
   address_id INT,
-  cleanliness_rating FLOAT;
-  maintenance_rating FLOAT;
-  location_rating FLOAT;
-  value_rating FLOAT;
-  amenities_rating FLOAT;
-  staff_rating FLOAT;
+  cleanliness_rating FLOAT,
+  maintenance_rating FLOAT,
+  location_rating FLOAT,
+  value_rating FLOAT,
+  amenities_rating FLOAT,
+  staff_rating FLOAT,
   rating FLOAT DEFAULT 0.0,
   capacity INT,
   price_range VARCHAR(100),
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS housing (
 
 CREATE TABLE IF NOT EXISTS review (
   id SERIAL PRIMARY KEY,
-  user_id INT NOT NULL,
+  user_id INT,
   housing_id INT NOT NULL,
   rating FLOAT NOT NULL CHECK (rating >= 1 AND rating <= 5),
   cleanliness_rating FLOAT CHECK (cleanliness_rating >= 0 AND cleanliness_rating <= 5),

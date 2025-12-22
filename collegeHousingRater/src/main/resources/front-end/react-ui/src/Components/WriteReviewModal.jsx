@@ -44,14 +44,7 @@ const AlertCircle = ({ size = 20 }) => (
 
 // main component
 
-/**S
- * WriteReviewModal Component
- * 
- * @param {boolean} isOpen - Controls modal visibility
- * @param {function} onClose - Callback when modal is closed
- * @param {string} housingName - Name of the housing being reviewed
- * @param {number} housingId - ID of the housing being reviewed
- */
+// WriteReviewModal Component
 function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
   
 //State Hooks
@@ -96,39 +89,26 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
 
 //event Handlerss
   
-  /**
-   * Handle star rating click
-   * @param {string} category - Rating category 
-   * @param {number} rating - Star rating value (1-5)
-   */
+// Handle star rating click
   const handleRatingClick = (category, rating) => {
     setFormData(prev => ({ ...prev, [category]: rating }));
     setErrors(prev => ({ ...prev, [category]: null }));
   };
 
-  /**
-   * Handle text input changes
-   * @param {Event} e - Input change event
-   */
+// Handle input field changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     setErrors(prev => ({ ...prev, [name]: null }));
   };
 
-  /**
-   * Handle recommendation button click
-   * @param {boolean} value - true for recommend, false for not recommend
-   */
+// handle recommendation change
   const handleRecommendChange = (value) => {
     setFormData(prev => ({ ...prev, wouldRecommend: value }));
     setErrors(prev => ({ ...prev, wouldRecommend: null }));
   };
 
-  /**
-   * Validate form data
-   * @returns {boolean} - true if form is valid
-   */
+//handle form validation
   const validateForm = () => {
     const newErrors = {};
 
@@ -145,8 +125,8 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
     // Validate review content
     if (!formData.content.trim()) {
       newErrors.content = 'Please write your review';
-    } else if (formData.content.trim().length < 50) {
-      newErrors.content = 'Review must be at least 50 characters';
+    } else if (formData.content.trim().length < 1) {
+      newErrors.content = 'Review must be at least 1 characters';
     }
 
     // Validate year lived
@@ -163,9 +143,7 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  /**
-   * Handle form submission
-   */
+// handle form submission
   const handleSubmit = async () => {
     if (!validateForm()) {
       return;
@@ -176,13 +154,13 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
     try {
       const reviewData = {
         housingId: parseInt(housingId),
-        rating: formData.overallRating,
-        cleanlinessRating: formData.cleanlinessRating || 0,
-        maintenanceRating: formData.maintenanceRating || 0,
-        locationRating: formData.locationRating || 0,
-        valueRating: formData.valueRating || 0,
-        amenitiesRating: formData.amenitiesRating || 0,
-        staffRating: formData.staffRating || 0,
+        rating: parseFloat(formData.overallRating),
+        cleanlinessRating: parseFloat(formData.cleanlinessRating || 0),
+        maintenanceRating: parseFloat(formData.maintenanceRating || 0),
+        locationRating: parseFloat(formData.locationRating || 0),
+        valueRating: parseFloat(formData.valueRating || 0),
+        amenitiesRating: parseFloat(formData.amenitiesRating || 0),
+        staffRating: parseFloat(formData.staffRating || 0),
         title: formData.title,
         content: formData.content,
         pros: formData.pros.split('\n').filter(p => p.trim()),
@@ -236,12 +214,7 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
     }
   };
 
-  /**
-   * Render interactive star rating
-   * @param {string} category - Rating category
-   * @param {number} currentRating - Current rating value
-   * @returns {JSX.Element} Star rating component
-   */
+//rendering star ratings
   const renderStarRating = (category, currentRating) => {
     const hoverRating = hoveredRatings[category] || 0;
     const displayRating = hoverRating || currentRating;
