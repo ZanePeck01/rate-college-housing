@@ -1,4 +1,4 @@
-# HousingHub (College Housing Rater)
+# HousingHub (College Housing Rater) (Work In-Progress)
 
 > Empowering students to make informed housing decisions through transparent reviews and ratings of university-affiliated housing.
 
@@ -42,3 +42,23 @@ Whether you're moving across the country or staying local, choosing where to liv
 - Git/GitHub for version control
 - AWS for cloud hosting
 - Docker for containerization
+
+## How to Run/Demo the App:
+1. **Clone the repository:**
+```bash
+   git clone https://github.com/yourusername/rate-college-housing.git
+   cd collegeHousingRater
+```
+
+2. **Start all services:**
+```bash
+   docker-compose up --build
+```
+
+3. **Access the application:**
+   - http://localhost:3000/home
+  
+4. **Stop the application:**
+```bash
+   docker-compose down
+```
