@@ -1,0 +1,101 @@
+-- Create Tables
+
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  college VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS college (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  location VARCHAR(255) NOT NULL,
+  website VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS address (
+  id SERIAL PRIMARY KEY,
+  street VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  state VARCHAR(255) NOT NULL,
+  zip_code VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS housing (
+  id SERIAL PRIMARY KEY,
+  college_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  address_id INT,
+  cleanliness_rating FLOAT,
+  maintenance_rating FLOAT,
+  location_rating FLOAT,
+  value_rating FLOAT,
+  amenities_rating FLOAT,
+  staff_rating FLOAT,
+  rating FLOAT DEFAULT 0.0,
+  capacity INT,
+  price_range VARCHAR(100),
+  location VARCHAR(255),
+  review_count INT DEFAULT 0,
+  FOREIGN KEY (college_id) REFERENCES college(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (address_id) REFERENCES address(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS review (
+  id SERIAL PRIMARY KEY,
+  user_id INT,
+  housing_id INT NOT NULL,
+  rating FLOAT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  cleanliness_rating FLOAT CHECK (cleanliness_rating >= 0 AND cleanliness_rating <= 5),
+  maintenance_rating FLOAT CHECK (maintenance_rating >= 0 AND maintenance_rating <= 5),
+  location_rating FLOAT CHECK (location_rating >= 0 AND location_rating <= 5),
+  value_rating FLOAT CHECK (value_rating >= 0 AND value_rating <= 5),
+  amenities_rating FLOAT CHECK (amenities_rating >= 0 AND amenities_rating <= 5),
+  staff_rating FLOAT CHECK (staff_rating >= 0 AND staff_rating <= 5),
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  pros TEXT[],
+  cons TEXT[],
+  year_lived VARCHAR(50),
+  would_recommend BOOLEAN,
+  verified BOOLEAN DEFAULT FALSE,
+  helpful_count INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (housing_id) REFERENCES housing(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+-- Initialize database with sample data
+
+-- Colleges
+INSERT INTO college (id, name, location, website) 
+VALUES (1, 'University of Louisville', 'Louisville, KY', 'https://louisville.edu')
+ON CONFLICT (name) DO NOTHING;
+
+-- Test User
+INSERT INTO users (id, username, password, email, first_name, last_name, college)
+VALUES (1, 'test', 'password', 'test@example.com', 'Test', 'User', 'University of Louisville')
+ON CONFLICT DO NOTHING;
+
+-- College Housing Addresses
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (1, '1901 South 1st Street', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+-- College Housing
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
+VALUES(1, 'Unitas Tower', 1, 1, 300, 'Louisville, KY', '$2,200 - $3,800')
+ON CONFLICT DO NOTHING;
