@@ -95,6 +95,46 @@ INSERT INTO address (id, city, state, street, zip_code)
 VALUES (1, '1901 South 1st Street', 'Louisville', 'Kentucky', '40208')
 ON CONFLICT DO NOTHING;
 
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (2, '120 West Brandeis Avenue', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (3, '120 East Barbee Avenue', 'Louisville', 'Kentucky', '40217')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (4, '401 West Cardinal Boulevard', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (5, '2033 South Fourth Street', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (6, '1900 South Fourth Street', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (7, '2000 Unity Place', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (8, '323 West Cardinal Boulevard', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (9, '2108 Unity Place', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (10, '2000 Unity Place', 'Louisville', 'Kentucky', '40208')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO address (id, city, state, street, zip_code) 
+VALUES (11, '2403 South Floyd Street', 'Louisville', 'Kentucky', '40209')
+ON CONFLICT DO NOTHING;
+
 -- College Housing
 INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
 VALUES(1, 'Unitas Tower', 1, 1, 300, 'Louisville, KY', '$2,200 - $3,800 Cost-Per-Semester (9-month lease)')
