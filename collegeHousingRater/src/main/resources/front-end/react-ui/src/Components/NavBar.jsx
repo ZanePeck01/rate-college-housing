@@ -13,7 +13,7 @@ function NavBar() {
             {/* App ame and logo */}
             <Container>
                 {/* Logo/name, clicking it returns to home page*/}
-                <Navbar.Brand className="navbar-brand" href="/home">Rate Your College Housing</Navbar.Brand>
+                <Navbar.Brand className="navbar-brand" href="/home">HousingHub</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                 <Nav>
