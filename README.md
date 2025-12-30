@@ -18,9 +18,9 @@ Whether you're moving across the country or staying local, choosing where to liv
 
 ## Features
 
-- 🏠 Browse and search university-affiliated housing
-- ⭐ View detailed ratings across multiple categories (cleanliness, maintenance, management, amenities, etc.)
-- 📝 Read and write comprehensive reviews
+- Browse and search university-affiliated housing
+- View detailed ratings across multiple categories (cleanliness, maintenance, management, amenities, etc.)
+- Read and write comprehensive reviews
 - More to be added throughout development!
 
 ## Tech Stack
