@@ -9,18 +9,18 @@ College housing horror stories are all too common: black mold, unresponsive main
 ## The Solution
 
 HousingHub provides a centralized platform where students can:
-- **Read authentic reviews** from current and former residents
-- **Compare housing options** with detailed ratings and insights
-- **Make informed decisions** about where to live on campus
-- **Hold universities accountable** for maintaining quality living conditions
+- Read authentic reviews from current and former residents
+- Compare housing options with detailed ratings and insights
+- Make informed decisions about where to live on campus
+- Hold universities accountable for maintaining quality living conditions
 
 Whether you're moving across the country or staying local, choosing where to live shouldn't add stress to your college journey.
 
 ## Features
 
-- 🏠 Browse and search university-affiliated housing
-- ⭐ View detailed ratings across multiple categories (cleanliness, maintenance, management, amenities)
-- 📝 Read and write comprehensive reviews
+- Browse and search university-affiliated housing
+- View detailed ratings across multiple categories (cleanliness, maintenance, management, amenities, etc.)
+- Read and write comprehensive reviews
 - More to be added throughout development!
 
 ## Tech Stack
@@ -40,8 +40,8 @@ Whether you're moving across the country or staying local, choosing where to liv
 
 **DevOps & Hosting:**
 - Git/GitHub for version control
-- AWS for cloud hosting
 - Docker for containerization
+- AWS for cloud hosting
 
 ## How to Run/Demo the App:
 1. **Clone the repository:**
