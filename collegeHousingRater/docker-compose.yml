@@ -2,37 +2,39 @@ services:
   # PostgreSQL Database
   db:
     image: postgres:latest
-    container_name: collegehousingrater_db
+    container_name: ${DB_NAME}
     restart: unless-stopped
+    env_file: .env
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password123
-      POSTGRES_DB: collegehousingrater_db
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin -d collegehousingrater_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
 # Spring Boot Backend
   backend:
+    env_file: .env
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: college-housing-backend
+    container_name: ${BACKEND_CONTAINER_NAME}
     restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
       # Database connection
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/collegehousingrater_db
-      SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: password123
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
       # JPA settings
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "false"
@@ -50,10 +52,11 @@ services:
 
   # React Frontend
   frontend:
+    env_file: .env
     build:
       context: ./src/main/resources/front-end/react-ui
       dockerfile: Dockerfile
-    container_name: college-housing-frontend
+    container_name: ${FROTNEND_CONTAINER_NAME}
     restart: unless-stopped
     ports:
       - "3000:80"
@@ -61,7 +64,7 @@ services:
       backend:
         condition: service_healthy
     environment:
-      REACT_APP_API_URL: http://localhost:8080
+      REACT_APP_API_URL: ${REACT_APP_API_URL}
 
 volumes:
   postgres_data:
@@ -69,4 +72,4 @@ volumes:
 
 networks:
   default:
-    name: college-housing-network
+    name: ${NETWORK_NAME}
