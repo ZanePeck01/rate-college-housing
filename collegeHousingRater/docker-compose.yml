@@ -1,24 +1,24 @@
 services:
-  # PostgreSQL Database
-  db:
-    image: postgres:latest
-    container_name: ${DB_NAME}
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # # PostgreSQL Database (Dont need because of RDS for AWS)
+  # db:
+  #   image: postgres:latest
+  #   container_name: ${DB_NAME}
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   environment:
+  #     POSTGRES_USER: ${DB_USER}
+  #     POSTGRES_PASSWORD: ${DB_PASSWORD}
+  #     POSTGRES_DB: ${DB_NAME}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
 
 # Spring Boot Backend
   backend:
@@ -39,10 +39,10 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "false"
       # CORS settings
-      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://localhost
-    depends_on:
-      db:
-        condition: service_healthy
+      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://localhost,http://${EC2_PUBLIC_IP}:3000,http://${EC2_PUBLIC_IP}
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -66,9 +66,9 @@ services:
     environment:
       REACT_APP_API_URL: ${REACT_APP_API_URL}
 
-volumes:
-  postgres_data:
-    driver: local
+# volumes:
+#   postgres_data:
+#     driver: local
 
 networks:
   default:
