@@ -59,7 +59,7 @@ services:
     container_name: ${FROTNEND_CONTAINER_NAME}
     restart: unless-stopped
     ports:
-      - "80:80
+      - "80:80"
     depends_on:
       backend:
         condition: service_healthy
