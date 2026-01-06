@@ -8,7 +8,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './HousingDetail.css';
 import WriteReviewModal from './WriteReviewModal';
 
-
 // SSVG Icon Components
 
 // Star Icon
@@ -78,6 +77,10 @@ const ArrowLeft = ({ size = 20 }) => (
 
 // Housing Details Component
 
+  //AWS RDS endpoint
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+
 function HousingDetail() {
   // Get housing ID from URL parameters
   const { housingId } = useParams();
@@ -107,7 +110,7 @@ function HousingDetail() {
   
   useEffect(() => {
     // Fetch housing details
-    fetch(`http://localhost:8080/housing/${housingId}`)
+    fetch(`${API_URL}/housing/${housingId}`)
       .then(res => {
         if (!res.ok) throw new Error('Housing not found');
         return res.json();
@@ -124,7 +127,7 @@ function HousingDetail() {
       });
 
     // Fetch reviews for this housing
-    fetch(`http://localhost:8080/api/housing/${housingId}/reviews`)
+    fetch(`${API_URL}/api/housing/${housingId}/reviews`)
       .then(res => res.json())
       .then(data => {
         console.log('Reviews data:', data);

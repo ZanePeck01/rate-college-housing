@@ -9,7 +9,7 @@ function UofL() {
   const [college, setCollege] = useState(null);
   const [dorms, setDorms] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // ADD THIS LINE
+  const [error, setError] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState('all');
 
   // Format college name from URL
@@ -22,6 +22,11 @@ function UofL() {
   };
 
   useEffect(() => {
+
+  //AWS RDS endpoint
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+
     console.log("collegeName from URL:", collegeName);
     
     if (!collegeName) {
@@ -31,7 +36,7 @@ function UofL() {
     }
 
     // Fetch college details
-    fetch(`http://localhost:8080/home/${encodeURIComponent(collegeName)}`)
+    fetch(`${API_URL}/home/${encodeURIComponent(collegeName)}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -50,7 +55,7 @@ function UofL() {
       });
 
     // Fetch housing for this college
-    fetch(`http://localhost:8080/home/${encodeURIComponent(collegeName)}/housing`)
+    fetch(`${API_URL}/home/${encodeURIComponent(collegeName)}/housing`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);

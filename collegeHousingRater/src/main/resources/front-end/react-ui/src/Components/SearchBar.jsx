@@ -12,7 +12,10 @@ function SearchBar({ onSearch }) {
 
   // Fetch colleges from Spring Boot backend
   useEffect(() => {
-    fetch('http://localhost:8080/home')
+      //AWS RDS endpoint
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+    fetch(`${API_URL}/home`)
       .then((response) => response.json())
       .then((data) => {
         setColleges(data);

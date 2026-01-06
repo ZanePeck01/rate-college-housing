@@ -145,6 +145,11 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
 
 // handle form submission
   const handleSubmit = async () => {
+
+  //AWS RDS endpoint
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+
     if (!validateForm()) {
       return;
     }
@@ -171,7 +176,7 @@ function WriteReviewModal({ isOpen, onClose, housingName, housingId }) {
 
       console.log('Submitting review:', reviewData);
       
-      const response = await fetch(`http://localhost:8080/api/housing/${housingId}/reviews`, {
+      const response = await fetch(`${API_URL}/api/housing/${housingId}/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
