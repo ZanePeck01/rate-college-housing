@@ -24,7 +24,7 @@ import com.zanepeck.collegeHousingRater.Services.ReviewService;
 
 import lombok.AllArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = { "http://localhost:3000", "http://18.191.116.224:3000", "http://18.191.116.224" })
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/housing")
