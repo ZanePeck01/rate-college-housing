@@ -75,6 +75,12 @@ public class Housing {
     @JoinColumn(name = "college_id", nullable = false)
     private College college;
 
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @Column(name = "images", columnDefinition = "TEXT[]")
+    private String[] images;
+
     // Helper methods to get IDs
     public Long getCollegeId() {
         return college != null ? college.getId() : null;

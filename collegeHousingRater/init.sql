@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS college (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL UNIQUE,
   location VARCHAR(255) NOT NULL,
-  website VARCHAR(255)
+  website VARCHAR(255),
+  image_url VARCHAR(500)
 );
 
 CREATE TABLE IF NOT EXISTS address (
@@ -41,6 +42,8 @@ CREATE TABLE IF NOT EXISTS housing (
   price_range VARCHAR(100),
   location VARCHAR(255),
   review_count INT DEFAULT 0,
+  image_url VARCHAR(500),
+  images TEXT[],
   FOREIGN KEY (college_id) REFERENCES college(id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,

@@ -26,6 +26,8 @@ public class HousingDto {
     private String priceRange;
     private String location;
     private Integer reviewCount;
+    private String imageUrl;
+    private String[] images;
 
     // Address object for housing
     private AddressDto address;

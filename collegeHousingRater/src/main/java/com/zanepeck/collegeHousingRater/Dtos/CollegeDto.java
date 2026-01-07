@@ -16,5 +16,6 @@ public class CollegeDto {
     private String name;
     private String location;
     private String website;
+    private String imageUrl;
 
 }
