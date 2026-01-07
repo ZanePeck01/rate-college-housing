@@ -56,6 +56,8 @@ services:
     build:
       context: ./src/main/resources/front-end/react-ui
       dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL}
     container_name: ${FROTNEND_CONTAINER_NAME}
     restart: unless-stopped
     ports:
