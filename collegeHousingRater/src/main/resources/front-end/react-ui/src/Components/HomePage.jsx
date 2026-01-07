@@ -4,10 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
-/*
-  * SVG Icon Components
-  * Reusable icon components for UI elements
-*/
+// SVG Icon Components
 
 // Search Icon Component
 const Search = ({ size = 24 }) => (
@@ -49,11 +46,7 @@ const TrendingUp = ({ size = 24 }) => (
   </svg>
 );
 
-/*
- * HomePage Component
- * Main landing page that displays all sections and handles user interactions
- * Fetches college data from backend and provides search/navigation functionality
- */
+// HomePage Component
 function HomePage() {
   // Navigation hook for routing
   const navigate = useNavigate();
@@ -111,20 +104,14 @@ function HomePage() {
   ];
 
   // Event Handlers
-  /**
-   * Navigate to specific college page
-   * Converts college name to URL-friendly format
-   */
+  // Handle click on college tag
   const handleCollegeClick = (collegeName) => {
     // Convert "University of Louisville" to "university-of-louisville"
     const urlName = collegeName.toLowerCase().replace(/\s+/g, '-');
     navigate(`/home/${urlName}`);
   };
 
-  /**
-   * Handle search submission
-   * Navigates to college page based on search term
-   */
+  // Handle search submission
   const handleSearch = () => {
     if (searchTerm.trim()) {
       // Convert search term to URL format
