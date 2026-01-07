@@ -17,6 +17,7 @@ import com.zanepeck.collegeHousingRater.Mappers.CollegeMapper;
 import com.zanepeck.collegeHousingRater.Mappers.HousingMapper;
 import com.zanepeck.collegeHousingRater.Repositories.CollegeRepository;
 import com.zanepeck.collegeHousingRater.Repositories.HousingRepository;
+import com.zanepeck.collegeHousingRater.Services.S3Service;
 import lombok.AllArgsConstructor;
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://18.191.116.224:3000", "http://18.191.116.224" })
@@ -27,15 +28,23 @@ public class CollegeController {
 
     private final CollegeRepository collegeRepository;
     private final CollegeMapper collegeMapper;
-    private final HousingRepository housingRepository; // ADD THIS
-    private final HousingMapper housingMapper; // ADD THIS
+    private final HousingRepository housingRepository;
+    private final HousingMapper housingMapper;
+    private final S3Service s3Service;
 
     // Getting all colleges
     @GetMapping
     public List<CollegeDto> getAllColleges() {
         return collegeRepository.findAll()
                 .stream()
-                .map(collegeMapper::toDto)
+                .map(college -> {
+                    CollegeDto dto = collegeMapper.toDto(college);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +59,14 @@ public class CollegeController {
         CollegeDto college = collegeRepository.findAll()
                 .stream()
                 .filter(c -> c.getName().equalsIgnoreCase(formattedName))
-                .map(collegeMapper::toDto)
+                .map(c -> {
+                    CollegeDto dto = collegeMapper.toDto(c);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .findFirst()
                 .orElse(null);
 
@@ -61,7 +77,7 @@ public class CollegeController {
         return ResponseEntity.ok(college);
     }
 
-    // ADD THIS METHOD - Get all housing for a specific college
+    // Get all housing for a specific college
     @GetMapping("/{collegeName}/housing")
     public ResponseEntity<List<HousingDto>> getCollegeHousing(@PathVariable String collegeName) {
         System.out.println("Fetching housing for: " + collegeName);
@@ -87,7 +103,14 @@ public class CollegeController {
         // Get all housing for this college
         List<HousingDto> housing = housingRepository.findByCollegeId(college.getId())
                 .stream()
-                .map(housingMapper::toDto)
+                .map(h -> {
+                    HousingDto dto = housingMapper.toDto(h);
+                    // Convert housing image URL to full S3 URL if it exists
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
 
         System.out.println("Found " + housing.size() + " housing options");

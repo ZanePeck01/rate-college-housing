@@ -54,4 +54,17 @@ public class S3Service {
     public String getImageUrl(String fileName) {
         return String.format("https://%s.s3.amazonaws.com/%s", bucketName, fileName);
     }
+
+    // Get full URL from a given path
+    public String getFullUrl(String path) {
+        if (path == null || path.isEmpty()) {
+            return null;
+        }
+        // If already a full URL, return as-is
+        if (path.startsWith("http")) {
+            return path;
+        }
+        // Otherwise, construct the full S3 URL
+        return String.format("https://%s.s3.amazonaws.com/%s", bucketName, path);
+    }
 }
