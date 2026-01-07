@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS review (
 -- Initialize database with sample data
 
 -- Colleges
-INSERT INTO college (id, name, location, website) 
-VALUES (1, 'University of Louisville', 'Louisville, KY', 'https://louisville.edu')
+INSERT INTO college (id, name, location, website, image_url) 
+VALUES (1, 'University of Louisville', 'Louisville, KY', 'https://louisville.edu', 'colleges/louisville_campus.jpg')
 ON CONFLICT (name) DO NOTHING;
 
 -- Test User
@@ -139,46 +139,46 @@ VALUES (11, '2403 South Floyd Street', 'Louisville', 'Kentucky', '40209')
 ON CONFLICT DO NOTHING;
 
 -- College Housing
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(1, 'Unitas Tower', 1, 1, 300, 'Louisville, KY', '$2,200 - $3,800 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(1, 'Unitas Tower', 1, 1, 300, 'Louisville, KY', '$2,200 - $3,800 Cost-Per-Semester (9-month lease)', 'housing/unitas_image.jpeg')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(2, 'Belknap Village North', 2, 1, 452, 'Louisville, KY', '$3,870 - $4,850 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(2, 'Belknap Village North', 2, 1, 452, 'Louisville, KY', '$3,870 - $4,850 Cost-Per-Semester (9-month lease)', 'housing/Belknap_Village_North.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(3, 'Belknap Village South', 3, 1, 452, 'Louisville, KY', '$3,870 - $4,850 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(3, 'Belknap Village South', 3, 1, 452, 'Louisville, KY', '$3,870 - $4,850 Cost-Per-Semester (9-month lease)', 'housing/Belknap_Village_South.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(4, 'Bettie Johnson Hall', 4, 1, 490, 'Louisville, KY', '$4,300 - $6,411 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(4, 'Bettie Johnson Hall', 4, 1, 490, 'Louisville, KY', '$4,300 - $6,411 Cost-Per-Semester (9-month lease)', 'housing/Bettie_Johnson.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(5, 'Community Park', 5, 1, 358, 'Louisville, KY', '$3,900 - $6,220 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(5, 'Community Park', 5, 1, 358, 'Louisville, KY', '$3,900 - $6,220 Cost-Per-Semester (9-month lease)', 'housing/Community_Park.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(6, 'Kurz Hall', 6, 1, 402, 'Louisville, KY', '$3,900 - $6,220 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(6, 'Kurz Hall', 6, 1, 402, 'Louisville, KY', '$3,900 - $6,220 Cost-Per-Semester (9-month lease)', 'housing/Kurz_Hall.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(7, 'Louisville Hall', 7, 1, 211, 'Louisville, KY', '$3,200 - $4,150 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(7, 'Louisville Hall', 7, 1, 211, 'Louisville, KY', '$3,200 - $4,150 Cost-Per-Semester (9-month lease)', 'housing/Louisville_Hall.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(8, 'Cardinal Towne', 8, 1, 539, 'Louisville, KY', '$4,190 - $7,100 Cost-Per-Semester (11.5-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(8, 'Cardinal Towne', 8, 1, 539, 'Louisville, KY', '$4,190 - $7,100 Cost-Per-Semester (11.5-month lease)', 'housing/Cardinal_Towne.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(9, 'University Pointe', 9, 1, 529, 'Louisville, KY', '$4,600 Cost-Per-Semester (11.5-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(9, 'University Pointe', 9, 1, 529, 'Louisville, KY', '$4,600 Cost-Per-Semester (11.5-month lease)', 'housing/University_Pointe.jpg')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(10, 'University Tower Apartments', 10, 1, 220, 'Louisville, KY', '$3,300 - $4,050 Cost-Per-Semester (9-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(10, 'University Tower Apartments', 10, 1, 220, 'Louisville, KY', '$3,300 - $4,050 Cost-Per-Semester (9-month lease)', 'housing/University_Tower_Apartments.webp')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range)
-VALUES(11, 'Denny Crum Hall', 11, 1, 128, 'Louisville, KY', '$6,750 - $10,050 Cost-Per-Semester (11.5-month lease)')
+INSERT INTO housing (id, name, address_id, college_id, capacity, location, price_range, image_url)
+VALUES(11, 'Denny Crum Hall', 11, 1, 128, 'Louisville, KY', '$6,750 - $10,050 Cost-Per-Semester (11.5-month lease)', 'housing/Denny_Crum_Hall.jpg')
 ON CONFLICT DO NOTHING;
