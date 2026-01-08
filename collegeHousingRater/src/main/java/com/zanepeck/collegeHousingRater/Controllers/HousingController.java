@@ -17,6 +17,7 @@ import com.zanepeck.collegeHousingRater.Repositories.HousingRepository;
 import com.zanepeck.collegeHousingRater.Repositories.CollegeRepository;
 import com.zanepeck.collegeHousingRater.Dtos.HousingDto;
 import com.zanepeck.collegeHousingRater.Mappers.HousingMapper;
+import com.zanepeck.collegeHousingRater.Services.S3Service;
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://18.191.116.224:3000", "http://18.191.116.224" })
 @RestController
@@ -27,13 +28,21 @@ public class HousingController {
     private final HousingRepository housingRepository;
     private final CollegeRepository collegeRepository;
     private final HousingMapper housingMapper;
+    private final S3Service s3Service;
 
     // Get all housing
     @GetMapping
     public List<HousingDto> getAllHousing() {
         return housingRepository.findAll()
                 .stream()
-                .map(housingMapper::toDto)
+                .map(housing -> {
+                    HousingDto dto = housingMapper.toDto(housing);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +50,14 @@ public class HousingController {
     @GetMapping("/{id}")
     public ResponseEntity<HousingDto> getHousingById(@PathVariable Long id) {
         return housingRepository.findById(id)
-                .map(housingMapper::toDto)
+                .map(housing -> {
+                    HousingDto dto = housingMapper.toDto(housing);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -52,7 +68,14 @@ public class HousingController {
         return housingRepository.findAll()
                 .stream()
                 .filter(housing -> housing.getName().toLowerCase().contains(name.toLowerCase()))
-                .map(housingMapper::toDto)
+                .map(housing -> {
+                    HousingDto dto = housingMapper.toDto(housing);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -61,7 +84,14 @@ public class HousingController {
     public ResponseEntity<List<HousingDto>> getHousingByCollegeId(@PathVariable Long collegeId) {
         List<HousingDto> housing = housingRepository.findByCollegeId(collegeId)
                 .stream()
-                .map(housingMapper::toDto)
+                .map(h -> {
+                    HousingDto dto = housingMapper.toDto(h);
+                    // Convert relative path to full S3 URL
+                    if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+                        dto.setImageUrl(s3Service.getFullUrl(dto.getImageUrl()));
+                    }
+                    return dto;
+                })
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(housing);
