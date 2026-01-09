@@ -19,7 +19,7 @@ import com.zanepeck.collegeHousingRater.Dtos.HousingDto;
 import com.zanepeck.collegeHousingRater.Mappers.HousingMapper;
 import com.zanepeck.collegeHousingRater.Services.S3Service;
 
-@CrossOrigin(origins = { "http://localhost:3000", "http://18.191.116.224:3000", "http://18.191.116.224" })
+@CrossOrigin(origins = { "http://localhost:3000", "http://18.219.88.255:3000", "http://18.219.88.255" })
 @RestController
 @AllArgsConstructor
 @RequestMapping("/housing")
