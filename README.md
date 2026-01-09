@@ -41,24 +41,9 @@ Whether you're moving across the country or staying local, choosing where to liv
 **DevOps & Hosting:**
 - Git/GitHub for version control
 - Docker for containerization
-- AWS for cloud hosting
+- AWS (EC2 Instance, S3 Bucket, PostgreSQL RDS) for cloud hosting
 
-## How to Run/Demo the App:
-1. **Clone the repository:**
-```bash
-   git clone https://github.com/yourusername/rate-college-housing.git
-   cd collegeHousingRater
-```
+## AWS Hosting:
+**Click here to go to HousingHub!**
+- http://18.219.88.255
 
-2. **Start all services:**
-```bash
-   docker-compose up --build
-```
-
-3. **Access the application:**
-   - http://localhost:3000/home
-  
-4. **Stop the application:**
-```bash
-   docker-compose down
-```
